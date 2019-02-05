@@ -1,5 +1,11 @@
 #include <iostream>
 using namespace std;
+
+
+void foo(){
+	cout<<"This is foo"<<endl;
+}
+
 int main(){
 	cout<<"Hello world!"<<endl;
 	cout<<"This is a new line !"<<endl;
@@ -7,10 +13,13 @@ int main(){
 
 	for (int i = 0; i<10; ++i){
 
-		if (i%2)
-			cout<<"even"<<endl;
+		if (i == 2)
+			cout<<"two"<<endl;
 		else
-			cout<<"odd"<<endl;
+			cout<<"not two"<<endl;
 	}
+
+
+	foo();
 	return 0;
 }
