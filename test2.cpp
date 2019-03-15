@@ -2,8 +2,12 @@
 using namespace std;
 
 
+void foo(){
+	cout<<"Hello i am second file !"<<endl;
+}
+
 int main(){
 
-	cout<<"Hello i am second file !"<<endl;
+	foo();
 	return 0;
 }
