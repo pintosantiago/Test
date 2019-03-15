@@ -15,5 +15,6 @@ int main(){
 
 	sayHello();
 	sayBye();
-	return 1;
+	return 2;
+
 }
