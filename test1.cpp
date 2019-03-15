@@ -2,9 +2,13 @@
 using namespace std;
 
 
+void sayBye(){
+	cout<<"Bye World !"<<endl;
+}
+
 int main(){
 
 	cout<<"Hello World"<<endl;
-	cout<<"Bye World !"<<endl;
+	sayBye();
 	return 0;
 }
