@@ -1,9 +1,13 @@
 #include <iostream>
 using namespace std;
 
+void foo(){
+	cout<<"Hi, i am third file"<<endl;
+}
+
 
 int main(){
 
-	cout<<"Hi, i am third file"<<endl;
+	foo();
 	return 0;
 }
