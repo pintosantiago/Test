@@ -2,6 +2,11 @@
 using namespace std;
 
 
+
+void sayBye(){
+	cout<<"Bye World !"<<endl;
+}
+
 void sayHello(){
 	cout<<"Hello World"<<endl;
 }
@@ -9,6 +14,6 @@ void sayHello(){
 int main(){
 
 	sayHello();
-	cout<<"Bye World !"<<endl;
+	sayBye();
 	return 0;
 }
