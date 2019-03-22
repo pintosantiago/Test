@@ -13,7 +13,7 @@ const Joi = require('joi')
 const express = require('express');
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
-const User = require('/home/santiago/Desktop/ExpressDemo/AppServer/user.js');
+const User = require('./user');
 
 //express is a function that we need to call now
 const app = express();
