@@ -21,7 +21,7 @@ const app = express();
 app.use(express.json()); //We enable json parsing in requests body
 
 //Connect to mongodb
-mongoose.connect('mongodb://santiagopinto:taller21c2019@hypechatbdd-yz6dt.mongodb.net/hypeChatBdd?retryWrites=true')
+mongoose.connect('mongodb+srv://santiagopinto:taller21c2019@hypechatbdd-yz6dt.mongodb.net/test?retryWrites=true')
 
 
 mongoose.connection.once('open', function(){
