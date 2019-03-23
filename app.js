@@ -22,9 +22,10 @@ app.use(express.json()); //We enable json parsing in requests body
 
 //Connect to mongodb
 mongoose.connect('mongodb+srv://santiagopinto:taller21c2019@hypechatbdd-yz6dt.mongodb.net/test?retryWrites=true')
+var db = mongoose.connection;
 
 
-mongoose.connection.once('open', function(){
+db.once('open', function(){
   console.log("Successful connection");
 }).on('error', function(error){
   console.log('Connection error', error);
@@ -81,7 +82,7 @@ app.post('/api/courses', (request,response) =>{
         user_image: request.body.user_image
       })
 
-      user.save().then();
+      user.users.insert().then();
       response.send("Success!"); //We notify the client
     });
 
