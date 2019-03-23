@@ -82,7 +82,7 @@ app.post('/api/courses', (request,response) =>{
         user_image: request.body.user_image
       })
 
-      user.users.insert().then();
+      User.users.insert(user).then();
       response.send("Success!"); //We notify the client
     });
 
