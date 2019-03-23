@@ -11,5 +11,5 @@ const userSchema = new Schema({
   user_image: String
 });
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('user', userSchema, 'users');
 module.exports = User; //We export the model to use it in other files

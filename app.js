@@ -82,13 +82,8 @@ app.post('/api/courses', (request,response) =>{
         user_image: request.body.user_image
       })
 
-      User.users.insert(user,function(err,docs){
-          if(err){
-            response.send(err);
-          } else{
-            response.send("Success");
-          }
-      });
+      user.save().then();
+      response.send("Success");
     });
 
   /*************************************************************************/
