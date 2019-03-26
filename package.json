@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "jasmine-node tests",
-    "start": "node app.js"
+    "start": "node app.js",
+    "test:coveralls": "jest --coverage --coverageReporters=text-lcov |
+    coveralls"
   },
   "keywords": [
     "heroku"
@@ -21,5 +23,8 @@
   },
   "engines": {
     "node": "10.15.3"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.3"
   }
 }
