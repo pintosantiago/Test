@@ -106,7 +106,6 @@ MongoClient.connect("mongodb+srv://santiagopinto:taller21c2019@hypechatbdd-yz6dt
        });
 
        /*************************************************************************/
-
        app.delete('/api/courses/:id', (request,response) =>{
            //Look if the course exists, otherwise throw 404
            const course = courses.find(c => c.id === parseInt(request.params.id));
