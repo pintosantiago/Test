@@ -5,6 +5,7 @@ node_js:
     - node
 
 script:
+  - npm run test:coverage
   - npm run test:coveralls
 
 notifications:
