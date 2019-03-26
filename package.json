@@ -7,7 +7,7 @@
     "test": "jasmine-node tests",
     "start": "node app.js",
 
-    "test:coverage": "jest --coverage && cat lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "test:coverage": "jest --coverage",
     "test:coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls"
   },
   "keywords": [
