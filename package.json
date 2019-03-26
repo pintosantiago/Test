@@ -25,6 +25,7 @@
     "node": "10.15.3"
   },
   "devDependencies": {
-    "coveralls": "^3.0.3"
+    "coveralls": "^3.0.3",
+    "jest": "^24.5.0"
   }
 }
