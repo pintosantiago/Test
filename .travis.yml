@@ -1,9 +1,15 @@
 sudo: false
-language: node js
+language: node_js
 
-node js:
+node_js:
     - node
-    
+
+install:
+    - npm ci
+
 script:
   - npm run lint
-  - npm run test: coveralls
+  - npm run test:coveralls
+
+notifications:
+    email: false
