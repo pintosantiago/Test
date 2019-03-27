@@ -5,7 +5,7 @@ language: node_js
 node_js:
     - node
 
-script: jest --coverage --passWithNoTests && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+script: jest --coverage --passWithNoTests && && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 notifications:
     email: false
