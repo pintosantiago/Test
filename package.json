@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "jest --coverage --coverageReporters=text-lcov | coveralls"
+    "test": "jest --coverage --passWithNoTests --coverageReporters=text-lcov | coveralls"
   },
   "keywords": [
     "heroku"
