@@ -8,7 +8,7 @@
     "start": "node app.js",
 
     "test:coverage": "jest --coverage",
-    "test:coveralls": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "test:coveralls": "jest --coverage --passWithNoTests && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "keywords": [
     "heroku"
