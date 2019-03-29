@@ -1,29 +1,33 @@
 {
-  "name": "NodeAPI",
+  "name": "hypechat",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "jest --coverage --passWithNoTests --coverageReporters=text-lcov | coveralls"
-  },
-  "keywords": [
-    "heroku"
-  ],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.16.4",
-    "joi": "^14.3.1",
-    "l": "^0.6.0",
-    "mongodb": "^3.2.2",
-    "swagger-ui-express": "^4.0.2"
+    "pretest": "eslint --ignore-path .gitignore .",
+    "test": "jasmine-node tests",
+    "start": "node index.js"
   },
   "engines": {
     "node": "10.15.3"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.5",
+    "config": "^3.0.1",
+    "debug": "^4.1.1",
+    "express": "^4.16.4",
+    "joi": "9.0.0-0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.4.19",
+    "read-yaml": "^1.1.0",
+    "swagger-ui-express": "^4.0.2"
+  },
   "devDependencies": {
-    "coveralls": "^3.0.3",
-    "jest": "^24.5.0"
+    "eslint": "^5.15.3",
+    "eslint-config-google": "^0.12.0",
+    "eslint-config-strongloop": "^2.1.0"
   }
 }
