@@ -4,7 +4,7 @@ const config = require('config');
 
 module.exports = function() {
   //const db = config.get('db');
-  const db = "mongodb+srv://admin:admin@hypechattestdb-gv9fz.mongodb.net/hypechattestdb?retryWrites=true";
+  const db = "mongodb://localhost/testDB";
   mongoose.set('bufferCommands', false);
   mongoose.connect(db, {useNewUrlParser: true})
       .then(() => dbLog(`Connected to ${db}`))
