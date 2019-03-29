@@ -7,6 +7,9 @@ const read = require('read-yaml');
 const swaggerDocument = read.sync('./swagger.yaml');
 
 module.exports = function(app) {
+  //Agrega handlers a la app segun el endpoint del request
+  //Aca se esta loopeando todo el tiempo porque en index.js se hace un llamado
+  //en la linea que dice "require('./startup/routes')(app);"
   app.use(express.json());
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   app.use('/', rootFile);

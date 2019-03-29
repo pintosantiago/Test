@@ -1,4 +1,4 @@
 {
   "db": "mongodb://localhost/slack-api",
-  "jwt_key": "jwt_private_key"
+  "jwt_key": "jwt_private_key" ",__comment": "es una config var de heroku"
 }

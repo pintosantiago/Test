@@ -23,8 +23,29 @@ router.post('/', async (request, response) => {
 
   if (user) return response.status(400).send('User already registered.');
 
+   //Salt: String random que se concatena a la password para aumentar
+   //la seguridad en el hasheo
   const salt = await bcrypt.genSalt(10);
+
+  //Concatena y hashea password y salt (Encriptamos la password)
   request.body.password = await bcrypt.hash(password, salt);
+
+  /**_.pick(object, [paths])
+  Creates an object composed of the picked object properties.
+
+  Arguments
+    object (Object): The source object.
+    [paths] (...(string|string[])): The property paths to pick.
+
+    Basicamente, de todos los campos que tiene object, toma los especificados
+    por path y crea un nuevo objeto
+
+    Ejemplo:
+    var object = { 'a': 1, 'b': '2', 'c': 3 };
+
+    _.pick(object, ['a', 'c']);
+    // => { 'a': 1, 'c': 3 }
+**/
   user = new User(_.pick(request.body,
       [
         'name', 'email', 'nickname', 'password', 'isAdmin', 'photo_url',
