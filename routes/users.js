@@ -4,7 +4,7 @@ const _ = require('lodash');
 const router = express.Router();
 const auth = require('../middelware/auth');
 
-const {User, validate} = require('../models/user');
+const {User, validate, validateUpdate} = require('../models/user');
 
 router.get('/me', auth, async (request, response) => {
   const user = await User.findById(request.user._id)
@@ -61,10 +61,35 @@ router.post('/', async (request, response) => {
       .send(_.pick(user, ['name', 'email']));
 });
 
-router.delete('/', auth, async (request, response) => {
-  const user = await User.findByIdAndDelete(request.user._id);
 
-  response.status(200).send(user);
+router.get('/test', auth, async (request, response) => {
+  var object = { 'a': 1, 'b': '2', 'c': 3 };
+
+  // => { 'a': 1, 'c': 3 }
+
+  response.status(200).send(_.pick(object, ['a', 'd']));
 });
+
+
+router.put('/me', auth, async (request, response) => {
+
+  const {error} = validateUpdate(request.body);
+  if (error) return response.status(400).send(error.details[0].message);
+  //const user = await User.findById(request.user._id);
+
+  if (request.body.password){
+    const salt = await bcrypt.genSalt(10);
+    request.body.password = await bcrypt.hash(request.body.password, salt);
+  };
+
+  const user = await User.findByIdAndUpdate(request.user._id, _.pick(request.body,
+    [
+      'nickname', 'password', 'photo_url'
+    ]
+  ));
+
+  response.status(200).send(_.pick(user, ['name', 'email']));
+});
+
 
 module.exports = router;
