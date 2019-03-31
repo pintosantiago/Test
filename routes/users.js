@@ -3,8 +3,15 @@ const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const router = express.Router();
 const auth = require('../middelware/auth');
+const mailer = require('../middelware/mail');
+const randomstring = require('randomstring');
 
-const {User, validate, validateUpdate} = require('../models/user');
+const {
+  User,
+  validate,
+  validateUpdate,
+  validatePasswordRestore
+} = require('../models/user');
 
 router.get('/me', auth, async (request, response) => {
   const user = await User.findById(request.user._id)
@@ -23,29 +30,8 @@ router.post('/', async (request, response) => {
 
   if (user) return response.status(400).send('User already registered.');
 
-   //Salt: String random que se concatena a la password para aumentar
-   //la seguridad en el hasheo
   const salt = await bcrypt.genSalt(10);
-
-  //Concatena y hashea password y salt (Encriptamos la password)
   request.body.password = await bcrypt.hash(password, salt);
-
-  /**_.pick(object, [paths])
-  Creates an object composed of the picked object properties.
-
-  Arguments
-    object (Object): The source object.
-    [paths] (...(string|string[])): The property paths to pick.
-
-    Basicamente, de todos los campos que tiene object, toma los especificados
-    por path y crea un nuevo objeto
-
-    Ejemplo:
-    var object = { 'a': 1, 'b': '2', 'c': 3 };
-
-    _.pick(object, ['a', 'c']);
-    // => { 'a': 1, 'c': 3 }
-**/
   user = new User(_.pick(request.body,
       [
         'name', 'email', 'nickname', 'password', 'isAdmin', 'photo_url',
@@ -61,34 +47,43 @@ router.post('/', async (request, response) => {
       .send(_.pick(user, ['name', 'email']));
 });
 
-
-router.get('/test', auth, async (request, response) => {
-  var object = { 'a': 1, 'b': '2', 'c': 3 };
-
-  // => { 'a': 1, 'c': 3 }
-
-  response.status(200).send(_.pick(object, ['a', 'd']));
-});
-
-
 router.put('/me', auth, async (request, response) => {
-
   const {error} = validateUpdate(request.body);
   if (error) return response.status(400).send(error.details[0].message);
-  //const user = await User.findById(request.user._id);
 
-  if (request.body.password){
+  if (request.body.password) {
     const salt = await bcrypt.genSalt(10);
     request.body.password = await bcrypt.hash(request.body.password, salt);
   };
 
-  const user = await User.findByIdAndUpdate(request.user._id, _.pick(request.body,
-    [
-      'nickname', 'password', 'photo_url'
-    ]
+  user = await User.findByIdAndUpdate(request.user._id, _.pick(request.body,
+      [
+        'nickname', 'password', 'photo_url'
+      ]
   ));
 
   response.status(200).send(_.pick(user, ['name', 'email']));
+});
+
+
+router.post('/restorepassword', async (request, response) => {
+  const {error} = validatePasswordRestore(request.body);
+  if (error) return response.status(400).send(error.details[0].message);
+
+  const email = request.body.email;
+  let user = await User.findOne({email: email});
+
+  if (!user) return response.status(400).send('Invalid email');
+
+  const newPassword = randomstring.generate(10);
+  const salt = await bcrypt.genSalt(10);
+  request.body.password = await bcrypt.hash(newPassword, salt);
+  user = await User.findByIdAndUpdate(user._id, _.pick(request.body,
+      [
+        'password'
+      ]
+  ));
+  mailer.sendMail(request, response, newPassword);
 });
 
 

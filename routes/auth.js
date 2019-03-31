@@ -15,10 +15,6 @@ router.post('/signin', async (req, res) => {
   const validPassword = await bcrypt.compare(req.body.password, user.password);
   if (!validPassword) return res.status(400).send('Invalid email or password.');
 
-  if (user.facebook_log != req.body.facebook_log) {
-    return res.status(400).send('User already registered.');
-  }
-
   const token = user.getAuthToken();
 
   res.status(200).send(token);
@@ -27,8 +23,7 @@ router.post('/signin', async (req, res) => {
 function validate(user) {
   const schema = {
     email: Joi.string().min(3).max(50).required().email(),
-    password: Joi.string().min(6).max(255).required(),
-    facebook_log: Joi.bool().required()
+    password: Joi.string().min(6).max(255).required()
   };
 
   return Joi.validate(user, schema);

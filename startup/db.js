@@ -3,8 +3,7 @@ const dbLog = require('debug')('app:dbLog');
 const config = require('config');
 
 module.exports = function() {
-  //const db = config.get('db');
-  const db = "mongodb://localhost/testDB";
+  const db = config.get('db');
   mongoose.set('bufferCommands', false);
   mongoose.connect(db, {useNewUrlParser: true})
       .then(() => dbLog(`Connected to ${db}`))

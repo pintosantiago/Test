@@ -42,17 +42,24 @@ function validateUser(user) {
   return Joi.validate(user, schema);
 };
 
-
-function validateUpdate(request_body){
+function validateUpdate(requestBody) {
   const schema = {
-    name: Joi.string().min(1).max(50).trim(),
     nickname: Joi.string().min(1).max(50).trim(),
     password: Joi.string().min(6).max(255),
-    photo_url: Joi.string().trim().uri(),
+    photo_url: Joi.string().trim().uri()
   };
 
-  return Joi.validate(request_body, schema);
+  return Joi.validate(requestBody, schema);
 }
+
+function validatePasswordRestore(requestBody) {
+  const schema = {
+    email: Joi.string().min(3).max(50).trim().required().email()
+  };
+  return Joi.validate(requestBody, schema);
+}
+
 exports.User = User;
 exports.validate = validateUser;
 exports.validateUpdate = validateUpdate;
+exports.validatePasswordRestore = validatePasswordRestore;
