@@ -1,5 +1,6 @@
 {
   "db": "mongodb://localhost/testDB",
   "__coment":"slack-api es la base de verdad",
-  "jwt_key": "jwt_private_key"
+  "jwt_key": "jwt_private_key",
+  "mail_pwd": "mail_pwd"
 }
