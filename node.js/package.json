@@ -1,0 +1,21 @@
+{
+  "name": "hypechat",
+  "version": "1.0.0",
+  "description": "A_simple_API_to_make_a_resilient_chat_app_for_workspaces__Feel_free_to_check_our__github_repository_httpsgithub_comtaller2fiubafedmanmatsanAppServer_for_more_information_",
+  "license": "Unlicense",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --recursive"
+  },
+  "browser": {
+    "fs": false
+  },
+  "dependencies": {
+    "superagent": "3.7.0"
+  },
+  "devDependencies": {
+    "mocha": "~2.3.4",
+    "sinon": "1.17.3",
+    "expect.js": "~0.3.1"
+  }
+}
